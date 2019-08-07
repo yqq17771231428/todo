@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery.min.js"></script>
+</head>
+
+<body>
+    <form action="">
+        用户名：<input type="text" name="username" id="user">
+        年龄：<input type="text" name="age" id="age">
+        <input type="button" value="提交" id="btn">
+    </form>
+    <script>
+        // 获取提交按钮绑定点击事件
+        
+        $('#btn').on('click', function () {
+        
+            
+            if ($('#age').val() < 18 ||$('#age').val() > 80) {
+            return false
+        }
+            // 调用ajax函数发送异步请求
+            $.ajax({
+                type: 'post',
+                url: '/getData',
+                data: {
+                    username: $('#user').val().trim(),
+                    age: $('#age').val().trim()
+                },
+                success: function (res) {
+                    console.log(res);
+
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>
